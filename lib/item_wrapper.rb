@@ -19,17 +19,13 @@ class ItemWrapper < SimpleDelegator
   end
 
   def handle_sell_in
-    if name != 'Sulfuras, Hand of Ragnaros'
-      self.sell_in -= 1
-    end
+    return if name == 'Sulfuras, Hand of Ragnaros' 
+    self.sell_in -= 1
   end
 
   def handle_quality
-    if name != 'Aged Brie' && name != 'Backstage passes to a TAFKAL80ETC concert'
-      if name != 'Sulfuras, Hand of Ragnaros'
-        decrement_quality
-      end
-    else
+    return if name == 'Sulfuras, Hand of Ragnaros' 
+    if name == 'Aged Brie' || name == 'Backstage passes to a TAFKAL80ETC concert'
       increment_quality
       if name == 'Backstage passes to a TAFKAL80ETC concert'
         if sell_in < 10
@@ -39,18 +35,16 @@ class ItemWrapper < SimpleDelegator
           increment_quality
         end
       end
+    else
+      decrement_quality
     end
     if sell_in < 0
-      if name != "Aged Brie"
-        if name != 'Backstage passes to a TAFKAL80ETC concert'
-          if name != 'Sulfuras, Hand of Ragnaros'
-            decrement_quality
-          end
-        else
-          self.quality = self.quality - quality
-        end
-      else
+      if name == "Aged Brie"
         increment_quality
+      elsif name == 'Backstage passes to a TAFKAL80ETC concert'
+          self.quality = self.quality - quality
+      else
+        decrement_quality
       end
     end
   end
