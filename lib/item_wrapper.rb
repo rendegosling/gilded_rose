@@ -30,11 +30,11 @@ class ItemWrapper < SimpleDelegator
     elsif name == 'Backstage passes to a TAFKAL80ETC concert'
       increment_quality
       if sell_in < 10
-          increment_quality
-        end
-        if sell_in < 6
-          increment_quality
-        end
+        increment_quality
+      end
+      if sell_in < 6
+        increment_quality
+      end
     else
       decrement_quality
     end
