@@ -24,14 +24,9 @@ class ItemWrapper < SimpleDelegator
   end
 
   def handle_quality
-    if name == 'Conjured'
+    decrement_quality
+    if sell_in < 0
       decrement_quality
-      decrement_quality
-    else
-      decrement_quality
-      if sell_in < 0
-        decrement_quality
-      end
     end
   end
 
