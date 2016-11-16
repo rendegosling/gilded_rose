@@ -4,9 +4,7 @@ class ItemWrapper < SimpleDelegator
   def update
     if self.name != 'Aged Brie' && self.name != 'Backstage passes to a TAFKAL80ETC concert'
       if self.name != 'Sulfuras, Hand of Ragnaros'
-        if self.quality > 0
-          self.quality -= 1
-        end
+        decrement_quality
       end
     else
       increment_quality
@@ -26,9 +24,7 @@ class ItemWrapper < SimpleDelegator
       if self.name != "Aged Brie"
         if self.name != 'Backstage passes to a TAFKAL80ETC concert'
           if self.name != 'Sulfuras, Hand of Ragnaros'
-            if self.quality > 0
-              self.quality -= 1
-            end
+            decrement_quality
           end
         else
           self.quality = self.quality - self.quality
@@ -42,6 +38,12 @@ class ItemWrapper < SimpleDelegator
   def increment_quality
     if self.quality < 50
       self.quality += 1
+    end
+  end
+
+  def decrement_quality
+    if self.quality > 0
+      self.quality -= 1
     end
   end
 end
