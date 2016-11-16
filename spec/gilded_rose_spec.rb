@@ -43,6 +43,17 @@ describe "#update_quality" do
     it "quality increases the older it gets" do
       expect(item.quality).to eq(11)
     end
+
+    context "and quality is 50" do
+      let(:initial_quality) { 50 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality cannot exceed by 50" do
+        expect(item.quality).to be <= 50
+      end
+    end
   end
 
   context "with multiple items" do
