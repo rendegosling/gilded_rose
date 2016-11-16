@@ -14,8 +14,21 @@ describe "#update_quality" do
       expect(item.sell_in).to eq(4)
     end
 
-		it "lowers the quality by 1" do
+    it "lowers the quality by 1" do
       expect(item.quality).to eq(9)
+    end
+  end
+
+  context "when sell by date has passed" do
+    let(:initial_sell_in) { -1 }
+    let(:initial_quality) { 10 }
+    let(:name) { "item" }
+    let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+    before { update_quality([item]) }
+
+    it "quality degrades twice as fast" do
+      expect(item.quality).to eq(8)
     end
   end
 
@@ -31,7 +44,7 @@ describe "#update_quality" do
 
     it "normal item should should lower their sellin and quality by 1" do
       expect(items[0].sell_in).to eq(4)
-			expect(items[0].quality).to eq(9)
+      expect(items[0].quality).to eq(9)
     end
   end
 end
