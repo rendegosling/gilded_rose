@@ -2,6 +2,7 @@ require 'delegate'
 
 class ItemWrapper < SimpleDelegator
   def update
+    return if name == 'Sulfuras, Hand of Ragnaros' 
     handle_sell_in
     handle_quality
   end
@@ -19,12 +20,10 @@ class ItemWrapper < SimpleDelegator
   end
 
   def handle_sell_in
-    return if name == 'Sulfuras, Hand of Ragnaros' 
     self.sell_in -= 1
   end
 
   def handle_quality
-    return if name == 'Sulfuras, Hand of Ragnaros' 
     if name == 'Aged Brie'
       increment_quality
       if sell_in < 0
