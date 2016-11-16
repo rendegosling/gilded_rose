@@ -41,6 +41,9 @@ class ItemWrapper < SimpleDelegator
       if sell_in < 0
         self.quality = self.quality - quality
       end
+    elsif name == 'Conjured'
+      decrement_quality
+      decrement_quality
     else
       decrement_quality
       if sell_in < 0
