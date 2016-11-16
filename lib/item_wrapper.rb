@@ -24,12 +24,7 @@ class ItemWrapper < SimpleDelegator
   end
 
   def handle_quality
-    if name == 'Aged Brie'
-      increment_quality
-      if sell_in < 0
-        increment_quality
-      end
-    elsif name == 'Backstage passes to a TAFKAL80ETC concert'
+    if name == 'Backstage passes to a TAFKAL80ETC concert'
       increment_quality
       if sell_in < 10
         increment_quality
@@ -49,5 +44,9 @@ class ItemWrapper < SimpleDelegator
         decrement_quality
       end
     end
+  end
+
+  def self.wrap(item)
+    new(item)
   end
 end
