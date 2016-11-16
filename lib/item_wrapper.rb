@@ -77,5 +77,10 @@ end
 
 class LegendaryItemWrapper < ItemWrapper
   def update
+    handle_quality
+  end
+
+  def handle_quality
+    self.quality = 80
   end
 end
