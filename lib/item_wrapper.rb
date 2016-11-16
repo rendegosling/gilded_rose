@@ -25,16 +25,16 @@ class ItemWrapper < SimpleDelegator
 
   def handle_quality
     return if name == 'Sulfuras, Hand of Ragnaros' 
-    if name == 'Aged Brie' || name == 'Backstage passes to a TAFKAL80ETC concert'
+    if name == 'Aged Brie'
       increment_quality
-      if name == 'Backstage passes to a TAFKAL80ETC concert'
-        if sell_in < 10
+    elsif name == 'Backstage passes to a TAFKAL80ETC concert'
+      increment_quality
+      if sell_in < 10
           increment_quality
         end
         if sell_in < 6
           increment_quality
         end
-      end
     else
       decrement_quality
     end
