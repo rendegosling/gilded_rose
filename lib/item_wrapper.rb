@@ -31,6 +31,45 @@ class ItemWrapper < SimpleDelegator
   end
 
   def self.wrap(item)
-    new(item)
+    if item.name == 'Aged Brie'
+      AgedBrieWrapper.new(item)
+    elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      BackstagePassWrapper.new(item)
+    elsif item.name == 'Conjured'
+      ConjuredWrapper.new(item)
+    else
+      new(item)
+    end
+  end
+end
+
+class AgedBrieWrapper < ItemWrapper
+  def handle_quality
+    increment_quality
+    if sell_in < 0
+      increment_quality
+    end
+  end
+end
+
+class BackstagePassWrapper < ItemWrapper
+  def handle_quality
+    increment_quality
+    if sell_in < 10
+      increment_quality
+    end
+    if sell_in < 6
+      increment_quality
+    end
+    if sell_in < 0
+      self.quality = self.quality - quality
+    end
+  end
+end
+
+class ConjuredWrapper < ItemWrapper
+  def handle_quality
+    decrement_quality
+    decrement_quality
   end
 end
