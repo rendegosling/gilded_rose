@@ -38,15 +38,14 @@ class ItemWrapper < SimpleDelegator
       if sell_in < 6
         increment_quality
       end
+      if sell_in < 0
+        self.quality = self.quality - quality
+      end
     else
       decrement_quality
     end
     if sell_in < 0
-      if name == 'Backstage passes to a TAFKAL80ETC concert'
-          self.quality = self.quality - quality
-      else
-        decrement_quality
-      end
+      decrement_quality
     end
   end
 end
