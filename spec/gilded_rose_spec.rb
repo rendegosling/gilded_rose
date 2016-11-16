@@ -10,8 +10,12 @@ describe "#update_quality" do
 
     before { update_quality([item]) }
 
-    it "your specs here" do
-      pending
+    it "lowers the sellin by 1" do
+      expect(item.sell_in).to eq(4)
+    end
+
+		it "lowers the quality by 1" do
+      expect(item.quality).to eq(9)
     end
   end
 
@@ -25,8 +29,9 @@ describe "#update_quality" do
 
     before { update_quality(items) }
 
-    it "your specs here" do
-      pending
+    it "normal item should should lower their sellin and quality by 1" do
+      expect(items[0].sell_in).to eq(4)
+			expect(items[0].quality).to eq(9)
     end
   end
 end
