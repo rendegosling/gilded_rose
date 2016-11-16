@@ -43,9 +43,9 @@ class ItemWrapper < SimpleDelegator
       end
     else
       decrement_quality
-    end
-    if sell_in < 0
-      decrement_quality
+      if sell_in < 0
+        decrement_quality
+      end
     end
   end
 end
