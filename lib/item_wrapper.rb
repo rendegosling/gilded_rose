@@ -2,7 +2,6 @@ require 'delegate'
 
 class ItemWrapper < SimpleDelegator
   def update
-    return if name == 'Sulfuras, Hand of Ragnaros' 
     handle_sell_in
     handle_quality
   end
@@ -37,6 +36,8 @@ class ItemWrapper < SimpleDelegator
       BackstagePassWrapper.new(item)
     elsif item.name == 'Conjured'
       ConjuredWrapper.new(item)
+    elsif item.name == 'Sulfuras, Hand of Ragnaros'
+      LegendaryItemWrapper.new(item)
     else
       new(item)
     end
@@ -71,5 +72,10 @@ class ConjuredWrapper < ItemWrapper
   def handle_quality
     decrement_quality
     decrement_quality
+  end
+end
+
+class LegendaryItemWrapper < ItemWrapper
+  def update
   end
 end
