@@ -17,6 +17,16 @@ describe "#update_quality" do
     it "lowers the quality by 1" do
       expect(item.quality).to eq(9)
     end
+
+    context "when a quality is 0" do
+      let(:initial_quality) { 0 }
+
+      before { update_quality([item]) }
+
+      it "quality cannot go negative" do
+        expect(item.quality).to be >=(0)
+      end
+    end
   end
 
   context "when sell by date has passed" do
