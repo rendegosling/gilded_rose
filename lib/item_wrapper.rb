@@ -9,19 +9,13 @@ class ItemWrapper < SimpleDelegator
         end
       end
     else
-      if self.quality < 50
-        self.quality += 1
-        if self.name == 'Backstage passes to a TAFKAL80ETC concert'
-          if self.sell_in < 11
-            if self.quality < 50
-              self.quality += 1
-            end
-          end
-          if self.sell_in < 6
-            if self.quality < 50
-              self.quality += 1
-            end
-          end
+      increment_quality
+      if self.name == 'Backstage passes to a TAFKAL80ETC concert'
+        if self.sell_in < 11
+          increment_quality
+        end
+        if self.sell_in < 6
+          increment_quality
         end
       end
     end
@@ -40,10 +34,14 @@ class ItemWrapper < SimpleDelegator
           self.quality = self.quality - self.quality
         end
       else
-        if self.quality < 50
-          self.quality += 1
-        end
+        increment_quality
       end
+    end
+  end
+
+  def increment_quality
+    if self.quality < 50
+      self.quality += 1
     end
   end
 end
