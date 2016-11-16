@@ -78,8 +78,8 @@ describe "#update_quality" do
       expect(item.sell_in).to eq(5)
     end
 
-    it "doesnt decrease quality" do
-      expect(item.quality).to eq(10)
+    it "doesnt decrease quality and is always 80" do
+      expect(item.quality).to eq(80)
     end
 
     it "quality is 80 and never alters" do
