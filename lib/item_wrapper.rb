@@ -24,18 +24,7 @@ class ItemWrapper < SimpleDelegator
   end
 
   def handle_quality
-    if name == 'Backstage passes to a TAFKAL80ETC concert'
-      increment_quality
-      if sell_in < 10
-        increment_quality
-      end
-      if sell_in < 6
-        increment_quality
-      end
-      if sell_in < 0
-        self.quality = self.quality - quality
-      end
-    elsif name == 'Conjured'
+    if name == 'Conjured'
       decrement_quality
       decrement_quality
     else
