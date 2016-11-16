@@ -73,6 +73,77 @@ describe "#update_quality" do
     end
   end
 
+  context "when item name is 'Backstage passes to a TAFKAL80ETC concert'" do
+    let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
+    let(:initial_quality) { 10 }
+
+    context "and sell in is greater than 10" do
+      let(:initial_sell_in) { 11 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality increases by 1" do
+        expect(item.quality).to eq(11)
+      end
+    end
+
+    context "and sell in is 10" do
+      let(:initial_sell_in) { 10 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality increases by 1" do
+        expect(item.quality).to eq(12)
+      end
+    end
+
+    context "and sell in is 6" do
+      let(:initial_sell_in) { 10 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality increases by 1" do
+        expect(item.quality).to eq(12)
+      end
+    end
+
+    context "and sell in is 5" do
+      let(:initial_sell_in) { 5 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality increases by 1" do
+        expect(item.quality).to eq(13)
+      end
+    end
+
+    context "and sell in is 1" do
+      let(:initial_sell_in) { 1 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality increases by 1" do
+        expect(item.quality).to eq(13)
+      end
+    end
+
+    context "and sell in is 0" do
+      let(:initial_sell_in) { 0 }
+      let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+      before { update_quality([item]) }
+
+      it "quality is 0" do
+        expect(item.quality).to eq(0)
+      end
+    end
+  end
+
   context "with multiple items" do
     let(:items) {
       [
