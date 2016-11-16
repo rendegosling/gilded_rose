@@ -56,6 +56,23 @@ describe "#update_quality" do
     end
   end
 
+  context "when item name is 'Sulfuras, Hand of Ragnaros'" do
+    let(:initial_sell_in) { 5 }
+    let(:initial_quality) { 10 }
+    let(:name) { 'Sulfuras, Hand of Ragnaros' }
+    let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+    before { update_quality([item]) }
+
+    it "has no sell date" do
+      expect(item.sell_in).to eq(5)
+    end
+
+    it "doesnt decrease quality" do
+      expect(item.quality).to eq(10)
+    end
+  end
+
   context "with multiple items" do
     let(:items) {
       [
