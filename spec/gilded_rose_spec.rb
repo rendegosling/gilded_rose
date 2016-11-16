@@ -144,6 +144,19 @@ describe "#update_quality" do
     end
   end
 
+  context "when item name is 'Conjured'" do
+    let(:initial_sell_in) { 5 }
+    let(:initial_quality) { 10 }
+    let(:name) { 'Conjured' }
+    let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+    before { update_quality([item]) }
+
+    it "items degrade in quality twice as fast as normal items" do
+      expect(item.quality).to eq(8)
+    end
+  end
+
   context "with multiple items" do
     let(:items) {
       [
