@@ -81,6 +81,10 @@ describe "#update_quality" do
     it "doesnt decrease quality" do
       expect(item.quality).to eq(10)
     end
+
+    it "quality is 80 and never alters" do
+      expect(item.quality).to eq(80)
+    end
   end
 
   context "when item name is 'Backstage passes to a TAFKAL80ETC concert'" do
