@@ -32,6 +32,19 @@ describe "#update_quality" do
     end
   end
 
+  context "when item name is 'Aged Brie'" do
+    let(:initial_sell_in) { 5 }
+    let(:initial_quality) { 10 }
+    let(:name) { 'Aged Brie' }
+    let(:item) { Item.new(name, initial_sell_in, initial_quality) }
+
+    before { update_quality([item]) }
+
+    it "quality increases the older it gets" do
+      expect(item.quality).to eq(11)
+    end
+  end
+
   context "with multiple items" do
     let(:items) {
       [
