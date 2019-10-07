@@ -1,20 +1,9 @@
 ## Setup
 
-Install Ruby 2.1.5 and bundler, OS X instructions below:
+1. Install Ruby
+2. Install Bundler
+3. Run `bundle install`
 
-```
-brew install rbenv ruby-build
-
-rbenv install # Uses version specified in .ruby-version
-gem install bundler
-```
-
-Install the bundled gems and run the specs:
-
-```
-bundle install
-bundle exec rspec
-```
 
 *Focus: TDD, Refactoring, OOP, Legacy Code, Idiomatic Ruby*
 
